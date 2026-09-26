@@ -1,0 +1,57 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="https://lightskyblue-meerkat-268765.hostingersite.com/Imagens/hr_logo.png"
+                style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<nav class="menu">
+    <ul>
+            <li *ngFor="let item of itens"
+                [routerLink]="item.path"
+                 routerLinkActive="ativo">
+            <a> {{ item.name }}</a>
+        </li>
+    </ul>
+</nav>
+
+<h3 style="margin-left: 10px;">Campeonato {{ campeonato.Nome }} - {{ campeonato.Ano }}</h3>
+
+<table>
+    <tr>
+        <td style="padding-left: 10px;">Times disponíveis:&nbsp;</td>
+        <td>
+            <select style="width: 180px; height: 32px; vertical-align: middle;" [(ngModel)]="timeSelecionado">
+                <option *ngFor="let time of listaTimesDisponiveis"
+                        [ngValue]="time.IdTime">
+                    {{ time.Nome }}
+                </option>
+            </select>
+        </td>
+        <td>
+            <button type="button" (click)="adicionar()"
+                    class="btn-ativo">Adicionar</button>
+        </td>
+    </tr>
+</table>
+
+<table class="tableDados" style="margin-top: 16px; margin-left: 10px;">
+    <thead>
+        <tr class="tableHead">
+            <th style="width: 60px;">Nº</th>
+            <th style="width: 240px; text-align: left; padding-left: 4px;">Time</th>
+            <th style="width: 90px; text-align: center;">Abreviatura</th>        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let time of listaTimes">
+            <td style="text-align: center;">{{ time.Numero }}</td>
+            <td style="padding-left: 4px;">{{ time.Nome }}</td>
+            <td style="text-align: center;">
+                {{ time.Abreviatura }}
+                <input type="hidden" [value]="time.IdTime">
+            </td>
+        </tr>
+    </tbody>
+</table>

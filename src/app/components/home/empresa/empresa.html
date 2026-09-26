@@ -1,0 +1,56 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="https://lightskyblue-meerkat-268765.hostingersite.com/Imagens/hr_logo.png"
+                style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<nav class="menu">
+    <ul>
+            <li *ngFor="let item of itens"
+                [routerLink]="item.path"
+                 routerLinkActive="ativo">
+            <a> {{ item.name }}</a>
+        </li>
+    </ul>
+</nav>
+
+<form [formGroup]="formulario" ngSubmit="gravar()"
+      style="margin-top: 20px;">
+    <label style="width: 60px; text-align: right; display: inline-block; font-weight: bold;" for="Nome">Nome:&nbsp;</label>
+    <input type="text" id="NomeEmpresa" formControlName="NomeEmpresa" 
+           style="width: 360px; height: 24px; margin-right: 10px;"/>
+    <div *ngIf="formulario.get('NomeEmpresa')?.invalid && formulario.get('NomeEmpresa')?.touched">
+        O Nome da Empresa é obrigatório.
+    </div>
+
+    <label for="Ativo" style="margin-left: 10px; font-weight: bold;">Ativo:&nbsp;</label>
+    <input type="checkbox" id="Ativo" formControlName="Ativo"
+           style="height: 24px; vertical-align: middle;" />
+
+    <input type="hidden" formControlName="IdEmpresa" />
+
+    <button type="button" (click)="gravar()" class="btn-ativo"
+            style="margin-left: 24px;">Gravar</button>
+</form>
+
+<table style="margin-top: 16px; margin-left: 10px;" class="tableDados">
+    <thead>
+        <tr class="tableHead">
+            <th style="width: 80px; text-align: left; text-align: center;">IdEmpresa</th>
+            <th style="width: 200px; text-align: left; padding-left: 4px;">Nome da Empresa</th>
+            <th style="width: 180px;">Data Cadastro</th>
+            <th style="width: 50px;">Ativo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let empresa of listaEmpresas" style="height: 28px;">
+            <td style="text-align: center;">{{ empresa.IdEmpresa }}</td>
+            <td style="padding-left: 4px;">{{ empresa.NomeEmpresa }}</td>
+            <td style="text-align: center;">{{ empresa.DataCadastro }}</td>
+            <td style="text-align: center;">{{ empresa.Ativo ? 'Sim' : 'Não' }}</td>
+        </tr>
+    </tbody>
+</table>

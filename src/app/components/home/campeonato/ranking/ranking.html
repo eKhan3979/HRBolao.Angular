@@ -1,0 +1,35 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td style="padding-top: 5px;">
+            <img src="https://lightskyblue-meerkat-268765.hostingersite.com/Imagens/hr_logo.png"
+                 style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+
+<div style="height: 275px; vertical-align: top;">
+    <table class="tableDados" style="margin: 10px 0px 10px 10px ;">
+        <thead class="tableHead">
+            <th style="width: 60px;">Posição</th>
+            <th style="width: 200px;text-align: start; padding-left: 4px;">Nome / Apelido</th>
+            <th style="width: 60px;">Pontos</th>
+        </thead>
+        <tbody class="tableBody">
+            <tr *ngFor="let rank of listaRanking">
+                <td style="text-align: center;">{{ rank.Posicao }}</td>
+                <td style="text-align: start; padding-left: 4px;">{{ rank.NomeApelido }}</td>
+                <td style="text-align: center;">
+                    <button type="button" (click)="rankDetalhes(rank)" class="btn-primary"
+                            style="width: 60px;" title="Ver Detalhes">
+                        {{ rank.Pontos }}
+                    </button>                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<span style="width: 354px; text-align: end;">
+    <button type="button" (click)="fechar()" class="btn-ativo">Fechar</button>
+</span>

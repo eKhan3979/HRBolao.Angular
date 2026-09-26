@@ -1,0 +1,49 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="https://bisque-antelope-888426.hostingersite.com/hr_logo.png"
+                style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<table style="padding-left: 14px; margin-top: -5px; font-size: 14px;">
+    <tr>
+        <td style="width: 116px;">Pontos da rodada: </td>
+        <td style="width: 200px; font-weight: bold; color: var(--cor-roxo);">{{ rodada.RodadaNome }}</td>
+        <td style="width: 20px;"></td>
+        <td style="width: 100px;">Total de Pontos:</td>
+        <td style="color: var(--cor-roxo); font-weight: bold;">{{ totalDePontos }}</td>
+    </tr>
+</table>
+<table class="tableDados" style="margin: 10px; width: 700px;">
+    <thead>
+        <tr class="tableHead">
+            <th style="width: 81px; height: 24px;">Data</th>
+            <th style="width: 54px;">Hora</th>
+            <th style="width: 175px; text-align: start; padding-left: 4px;">Time da Casa</th>
+            <th style="width: 30px;"></th>
+            <th style="width: 15px;">x</th>
+            <th style="width: 30px;"></th>
+            <th style="width: 175px; text-align: start; padding-left: 4px;">Time Visitante</th>
+            <th style="width: 70px;">Final</th>
+            <th style="width: 60px;">Pontos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let aposta of listaApostas" style="height: 24px;">
+            <td style="text-align: center;">{{ aposta.Dd_Mm_Yyyy }}</td>
+            <td style="text-align: center;">{{ aposta.Hh_Mm }}</td>
+            <td style="padding-left: 4px;">{{ aposta.TimeCasa }}</td>
+            <td style="text-align: center;">{{ aposta.GolsCasaAposta }}</td>
+            <td style="text-align: center;">x</td>
+            <td style="text-align: center;">{{ aposta.GolsVisitanteAposta }}</td>
+            <td style="padding-left: 4px;">{{ aposta.TimeVisitante }}</td>
+            <td style="text-align: center;">({{ aposta.Resultado }})</td>
+            <td style="text-align: center;">{{ aposta.Pontos }}</td>
+        </tr>
+    </tbody>
+</table>
+<span style="width: 710px; text-align: end; margin-top: 10px;">
+    <button type="button" class="btn-ativo" (click)="fechar()">Fechar</button>
+</span>

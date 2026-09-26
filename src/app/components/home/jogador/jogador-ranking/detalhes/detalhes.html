@@ -1,0 +1,63 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="https://bisque-antelope-888426.hostingersite.com/hr_logo.png"
+                style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<table style="padding-left: 24px; margin-top: -5px; font-size: 14px;">
+    <tr>
+        <td style="width: 83px;">Jogador: </td>
+        <td style="font-weight: bold; color: var(--cor-roxo);">{{ ranking.NomeApelido }}</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 10px;">Campeonato: </td>
+        <td style="padding-top: 10px; font-weight: bold; color: var(--cor-roxo);">{{ campeonato.Nome }} - {{ campeonato.Ano }}</td>
+    </tr>
+</table>
+
+<div style="height: 330px; vertical-align: top;">
+    <table style="margin-top: 10px; margin-left: 10px;">
+        <tr>
+            <td></td>
+            <td>
+                <table class="tableDados">
+                    <thead>
+                        <tr class="tableHead">
+                            <th style="width: 150px; text-align: start; padding-left: 5px;">Rodada</th>
+                            <th style="width: 80px; text-align: center;">Pontos</th>
+                            <th style="width: 50px; text-align: center;">Pontos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rodada of listaRodadas">
+                            <td style="text-align: start; padding-left: 5px;">{{ rodada.RodadaNome }}</td>
+                            <td style="text-align: center;">{{ rodada.Pontos }}</td>
+                            <td>
+                                <button type="button" (click)="jogosRodada(rodada.Rodada)"
+                                        class="btn-primary">
+                                    Jogos     
+                                </button>                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<table style="margin-top: 10px; margin-left: 23px; width: 85%;">
+    <tr>
+        <td style="padding: 10px 0 10px 0px; font-size: 14px;">
+            Total: <strong style="color: var(--cor-roxo);">{{ this.totalPontos }}</strong> ponto(s)
+        </td>
+        <td style="text-align: end;">
+            <button type="button" (click)="fechar()" class="btn-ativo"
+                    style="width: 80px;">Fechar</button>
+        </td>
+    </tr>
+</table>

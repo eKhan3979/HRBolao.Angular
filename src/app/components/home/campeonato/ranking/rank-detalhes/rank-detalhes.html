@@ -1,0 +1,37 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td style="padding-top: 5px;">
+            <img src="https://lightskyblue-meerkat-268765.hostingersite.com/Imagens/hr_logo.png"
+                 style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+
+<div style="height: 249px; margin-left: 25px; vertical-align: top; width: 229px;">
+    <table class="tableDados">
+        <thead class="tableHead">
+            <tr>
+                <th style="width: 150px; text-align: start; padding-left: 4px;">Rodada</th>
+                <th style="width: 60px;">Pontos</th>
+            </tr>
+        </thead>
+        <tbody class="tableBody">
+            <tr *ngFor="let rodada of listaRodada">
+                <td style="padding-left: 4px;">
+                    {{ rodada.RodadaNome }}
+                </td>
+                <td>
+                    <button type="button" class="btn-primary" (click)="verRodada(rodada)"
+                            style="width: 60px;">
+                        {{ rodada.Pontos }}
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<span style="width: 254px; margin-top: 10px; text-align: end;">
+    <button type="button" (click)="fechar()" class="btn-ativo">Fechar</button>
+</span>

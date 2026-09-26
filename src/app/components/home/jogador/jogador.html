@@ -1,0 +1,90 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="https://lightskyblue-meerkat-268765.hostingersite.com/Imagens/hr_logo.png"
+                style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<nav class="menu">
+    <ul>
+            <li *ngFor="let item of itens"
+                [routerLink]="item.path"
+                 routerLinkActive="ativo">
+            <a> {{ item.name }}</a>
+        </li>
+    </ul>
+</nav>
+
+<table style="margin-top: 16px; margin-left: 10px;">
+    <tr>
+        <td style="width: 100px; font-weight: bold;">Empresa:</td>
+        <td>
+            <select style="width: 209px; height: 28px; vertical-align: middle;"
+                    [(ngModel)]="empresaSelecionada"
+                    (ngModelChange)="listarJogadores()">
+                <option *ngFor="let empresa of listaEmpresas">
+                    {{ empresa.NomeEmpresa }}
+                </option>
+            </select>
+        </td>
+        <td style="width: 96px; text-align: right; font-weight: bold;">Campeonato: </td>
+        <td>
+            <select style="width: 316px; height: 28px; vertical-align: middle;"
+                    [(ngModel)]="campeonatoSelecionado"
+                    (ngModelChange)="ranking()">
+                <option *ngFor="let campeonato of listaCampeonatos">
+                    {{ campeonato.Nome }} {{ ((campeonato.Ano > 0) ? " - " + campeonato.Ano : "") }}
+                </option>
+            </select>
+        </td>
+        <td style="padding-left: 25px;">
+            <button type="button" (click)="rankingCampeonato()"
+                    class="btn-ativo" style="width: 80px;">
+                Ranking
+            </button>
+        </td>
+    </tr>
+</table>
+
+<table style="margin-top: 2px; margin-left: 10px; vertical-align: middle;">
+    <tr>
+        <td style="font-weight: bold;">Nome/Apelido:</td>
+        <td>
+            <input type="text" [(ngModel)]="jogadorEdit.NomeApelido"
+                   style="height: 22px; width: 200px;"/>
+        </td>
+        <td style="padding-left: 10px; font-weight: bold;">e-mail:</td>
+        <td>
+            <input type="text" [(ngModel)]="jogadorEdit.email"
+                   style="height: 22px; width: 280px;"/>
+        </td>
+        <td style="padding-left: 10px;">Ativo:</td>
+        <td>
+            <input type="checkbox"  [(ngModel)]="jogadorEdit.Ativo"
+                   style="height: 22px; vertical-align: middle;"/>
+        </td>
+        <button type="button" (click)="gravar()" class="btn-ativo" 
+                style="margin-left: 22px; width: 80px; margin-top: 2px;">Gravar</button>
+    </tr>
+</table>
+
+<table class="tableDados" style="margin-top: 10px; margin-left: 10px;">
+    <thead>
+        <tr class="tableHead">
+            <th style="width: 78px;">IdJogador</th>
+            <th style="width: 210px; text-align: left; padding-left: 4px;">Nome/Apelido</th>
+            <th style="width: 200px; text-align: left; padding-left: 4px;">email</th>
+            <th style="text-align: center; width: 60px;">Ativo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let jogador of listaJogadores" style="height: 28px;">
+            <td style="text-align: center;">{{ jogador.IdJogador }}</td>
+            <td style="padding-left: 4px;">{{ jogador.NomeApelido }}</td>
+            <td style="padding-left: 4px;">{{ jogador.email }}</td>
+            <td style="text-align: center;">{{ jogador.Ativo }}</td>
+        </tr>
+    </tbody>
+</table>

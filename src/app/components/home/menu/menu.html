@@ -1,0 +1,10 @@
+<h2 style="margin-left: 14px;">HR: Bolão</h2>
+<nav class="menu">
+    <ul>
+            <li *ngFor="let item of itens"
+                [routerLink]="item.path"
+                 routerLinkActive="ativo">
+            <a> {{ item.name }}</a>
+        </li>
+    </ul>
+</nav>

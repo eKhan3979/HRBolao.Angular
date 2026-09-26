@@ -1,0 +1,130 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="../../imagens/hr_logo.png"
+                style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<nav class="menu">
+    <ul>
+        <li *ngFor="let item of itens"
+            [routerLink]="item.path"
+             routerLinkActive="ativo">
+            <a> {{ item.name }}</a>
+        </li>
+    </ul>
+</nav>
+
+<table style="margin-left: 10px; margin-top: 10px;">
+    <tr>
+        <td style="width: 240px;">Nome do Time:</td>
+        <td>Abreviatura:</td>
+        <td>Tipo:</td>
+        <td>Cidade:</td>
+        <td>UF:</td>
+        <td style="width: 40px; text-align: center;">Ativo:</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="hidden" [(ngModel)]="timeEdit.IdTime"/>
+            <input type="text" [(ngModel)]="timeEdit.Nome"
+                   style="width: 240px;"/>
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="timeEdit.Abreviatura"
+                   style="width: 80px;" />
+        </td>
+        <td>
+            <select [(ngModel)]="timeEdit.TipoStr"
+                    (ngModelChange)="selecionarTipo()"
+                    style="height: 28px; width: 140px;">
+                <option *ngFor="let tipo of listaTipos">
+                    {{ tipo }}
+                </option>
+            </select>
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="timeEdit.Cidade"
+                   style="width: 220px;"/>
+        </td>
+        <td>
+            <select [(ngModel)]="timeEdit.UF"
+                    style="height: 28px; width: 50px;">
+                <option *ngFor="let uf of listaUF">
+                    {{ uf }}
+                </option>
+            </select>
+        </td>        
+        <td>
+            <input type="checkbox" [(ngModel)]="timeEdit.Ativo"
+                   style="text-align: center; width: 40px;"/>
+        </td>
+        <td style="padding-left: 10px;">
+            <button type="button" (click)="gravar()"
+                    class="btn-ativo">Gravar</button>
+        </td>
+    </tr>
+</table>
+
+<table style="border: 1px Solid #606060; margin-left: 10px; margin-top: 10px; background-color: red; padding: 1px;">
+    <tr>
+        <td>
+            <div class="table-container" style="margin: -4px;">
+                <!--<table mat-table [dataSource]="dataSource" class="mat-elevation-22">-->
+                <table mat-table [dataSource]="dataSource" class="tableMatHR">
+                    <ng-container matColumnDef="Numero">
+                        <th mat-header-cell *matHeaderCellDef style="height: 32px; width: 36px;">Nº</th>
+                        <td mat-cell *matCellDef="let time" 
+                            style="text-align: center; border-color: black; border-width: 1px;">
+                            {{ time.Numero }}
+                        </td>
+                    </ng-container>        
+                    <ng-container matColumnDef="Nome">
+                        <th mat-header-cell *matHeaderCellDef style="width: 240px;">Nome</th>
+                        <td mat-cell *matCellDef="let time">
+                            {{ time.Nome }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Abreviatura">
+                        <th mat-header-cell *matHeaderCellDef style="width: 60px;">Abreviatura</th>
+                        <td mat-cell *matCellDef="let time" style="text-align: center;">
+                            {{ time.Abreviatura }}
+                        </td>
+                    </ng-container>        
+                    <ng-container matColumnDef="TipoStr">
+                        <th mat-header-cell *matHeaderCellDef style="width: 150px;">Tipo</th>
+                        <td mat-cell *matCellDef="let time">
+                            {{ time.TipoStr }}
+                        </td>
+                    </ng-container>        
+                    <ng-container matColumnDef="Cidade">
+                        <th mat-header-cell *matHeaderCellDef style="width: 180px;">Cidade</th>
+                        <td mat-cell *matCellDef="let time">
+                            {{ time.Cidade }}
+                        </td>
+                    </ng-container>        
+                    <ng-container matColumnDef="UF">
+                        <th mat-header-cell *matHeaderCellDef style="width: 60px;">UF</th>
+                        <td mat-cell *matCellDef="let time" style="text-align: center;">
+                            {{ time.UF }}
+                        </td>
+                    </ng-container>        
+                    <ng-container matColumnDef="Ativo">
+                        <th mat-header-cell *matHeaderCellDef style="width: 160px;">Ativo</th>
+                        <td mat-cell *matCellDef="let time" style="text-align: center; border-right: 1px Solid #606060;">
+                            {{ time.AtivoStr }}
+                            <button type="button" class="btn-ativo"
+                                    style="margin-left: 10px;"
+                                    (click)="editar(time)">Editar</button>
+                        </td>
+                    </ng-container>        
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>

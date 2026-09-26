@@ -1,0 +1,25 @@
+.table-container {
+  max-width: 900px;
+  max-height: 419px;
+
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.tableMatHR {
+  background-color: #8606B0;
+  border-color: #000000;
+  border-width: 1px;
+  border-left: 11px;
+  border-spacing: 0px;
+ /*width: 100%;*/
+  /*min-width: 800px;*/
+}
+
+th {
+  /*background: white;*/
+  z-index: 10;
+  /*background: #8606B0;*/
+  color: white;
+  height: 20px;
+}

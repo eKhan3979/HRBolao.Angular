@@ -1,0 +1,141 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="https://lightskyblue-meerkat-268765.hostingersite.com/Imagens/hr_logo.png"
+                 style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<nav class="menu">
+    <ul>
+        <li *ngFor="let item of itens"
+            [routerLink]="item.path"
+             routerLinkActive="ativo">
+            <a> {{ item.name }}</a>
+        </li>
+    </ul>
+</nav>
+
+<table style="padding-top: 10px; padding-bottom: 10px;">
+    <tr>
+        <td style="padding-left: 20px; font-weight: bold; font-size: 16px;">
+            {{ campeonato.Nome }} {{ campeonato.Ano }}
+        </td>
+        <td>- Rodada:</td>
+        <td>
+            <select style="width: 150px; height: 28px; vertical-align: middle;"
+                    [(ngModel)]="rodadaSelect">
+                <option *ngFor="let rodada of listaRodadas">
+                    {{ rodada.RodadaNome }}
+                </option>
+            </select>
+        </td>
+        <td>
+            <button type="button" (click)="jogos()" class="btn-ativo"
+                    style="margin-left: 4px;">Listar Jogos</button>
+        </td>
+        <td>
+            <button type="button" (click)="novaRodada()" class="btn-ativo"
+                    style="margin-left: 20px; margin-right: 4px;">Nova Rodada</button>
+        </td>
+        <td>
+            <input type="number" [disabled]="!permitirNovaRodada" min="0"
+                   [(ngModel)]="jogoEdit.Rodada"
+                   style="height: 24px; width: 50px; text-align: center;" />
+        </td>
+        <td>
+            <input type="text" [disabled]="!permitirNovaRodada"
+                   [(ngModel)]="jogoEdit.RodadaNome"
+                   style="height: 24px; width: 200px;"/>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td style="padding-left: 32px;">Data: </td>
+        <td>
+            <input type="date" [(ngModel)]="jogoEdit.DataJogo"
+                   [disabled]="!permitirNovoJogo" style="height: 24px;" />
+        </td>
+
+        <td style="padding-left: 10px;">Hora: </td>
+        <td>
+            <input type="time" [(ngModel)]="jogoEdit.Hh_Mm"
+                   [disabled]="!permitirNovoJogo" style="height: 24px;"/>
+        </td>
+        <td style="padding-left: 20px;">Time Mandante:&nbsp;</td>
+        <td>
+            <select [disabled]="!permitirNovoJogo" style="height: 28px; width: 150px;"
+                    [(ngModel)]="timeCasa">
+                <option *ngFor="let time of listaTimesDisponiveis" [ngValue]="time">
+                    {{ time.Nome }}
+                </option>
+            </select>
+        </td>
+        <td style="width: 30px; text-align: center;">x</td>
+        <td>Time Visitante: </td>
+        <td>
+            <select [disabled]="!permitirNovoJogo" style="height: 28px; width: 150px;"
+                    [(ngModel)]="timeVisitante">
+                <option *ngFor="let time of listaTimesDisponiveis" [ngValue]="time">
+                    {{ time.Nome }}
+                </option>
+            </select>
+        </td>
+        <td style="padding-left: 10px;">
+            <button type="button" (click)="incluirJogo()"
+                    class="btn-ativo"
+                    [disabled]="!permitirNovoJogo">Incluir Jogo</button> 
+        </td>
+    </tr>
+</table>
+
+<table class="tableDados" style="margin-top: 16px; margin-left: 10px;">
+    <thead>
+        <tr class="tableHead">
+            <th style="width: 100px;">Yyyy/Mm/Dd</th>
+            <th style="width: 60px;">Hh:Mm</th>
+            <th style="width: 145px; text-align: start; padding-left: 5px;">Time Mandante</th>
+            <th style="width: 44px;"></th>
+            <th style="width: 20px;"></th>
+            <th style="width: 44px;"></th>
+            <th style="width: 145px; text-align: start; padding-left: 5px;">Time Visitante</th>
+            <th style="width: 80px;">Finalizado</th>
+            <th style="width: 69px;"></th>
+            <th style="width: 136px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let jogo of listaJogos">
+            <td style="text-align: center;">{{ jogo.Yyyy_Mm_Dd }}</td>
+            <td style="text-align: center;">{{ jogo.Hh_Mm }}</td>
+            <td style="text-align: start; padding-left: 5px;">{{ jogo.TimeCasa  }}</td>
+            <td style="text-align: end;">
+                <input type="number" [(ngModel)]="jogo.GolsTimeCasa" min="0" max="12"
+                       style="text-align: center; height: 20px; width: 40px; border: 0;"
+                      [readOnly]="jogo.Finalizado"/>
+            </td>
+            <td style="text-align: center;">x</td>
+            <td style="text-align: start;">
+                <input type="number" [(ngModel)]="jogo.GolsTimeVisitante" min="0" max="12"
+                       style="text-align: center; height: 20px; width: 40px; border: 0;"
+                      [readOnly]="jogo.Finalizado"/>
+            </td>
+            <td style="text-align: start; padding-left: 5px;">{{ jogo.TimeVisitante  }}</td>
+            <td style="text-align: center;">
+                <input type="checkbox" [(ngModel)]="jogo.Finalizado"/>
+                <input type="hidden" [(ngModel)]="jogo.IdCampeonatoJogo"/>
+            </td>
+            <td>
+                <button type="button" class="btn-primary"
+                        (click)="excluirJogo(jogo)">Excluir</button>
+            </td>
+            <td>
+                <button type="button" class="btn-primary"
+                        (click)="gravarResultado(jogo)">Gravar Resultado</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

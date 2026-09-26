@@ -1,0 +1,31 @@
+<table>
+    <tr style="vertical-align: middle;">
+        <td style="width: 1px;"></td>
+        <td>
+            <img src="https://lightskyblue-meerkat-268765.hostingersite.com/Imagens/hr_logo.png"
+                style="margin-bottom: -8px;"/>
+        </td>
+    </tr>
+</table>
+<table style="margin-left: 10px;">
+    <tr>
+        <td>e-mail:&nbsp;</td>
+        <td>
+            <input type="text" [(ngModel)]="jogadorLogin.email"
+                   style="width: 290px; height: 21px;"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Senha:&nbsp;</td>
+        <td>
+            <input type="password" [(ngModel)]="jogadorLogin.Senha"
+                   style="width: 153px; height: 21px;"/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: right;">
+            <button type="button" (click)="loginJogador()"
+                    class="btn-ativo" style="margin-top: 4px;">Login</button>
+        </td>
+    </tr>
+</table>
